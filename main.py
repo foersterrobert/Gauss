@@ -130,7 +130,7 @@ def backsubstitution(a, b):
 st.markdown(
             """
             <div>
-                <a style='text-decoration: none; display:flex; align-items: center; justify-content: center; gap: 5px;' href="https://github.com/foersterrobert/MNIST-Drawer" target='_blank'>
+                <a style='text-decoration: none; display:flex; align-items: center; justify-content: center; gap: 5px;' href="https://github.com/foersterrobert/Gauss" target='_blank'>
                     <h4>Der code ist auch auf GitHub</h4>
                 </a>
             </div>
