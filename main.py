@@ -88,7 +88,10 @@ if eliminate:
     myString = []
     for idx, i in enumerate(eigeneLösung):
         if i != 0:
-            myString.append(f"{i}x{superScriptDict[len(eigeneLösung)-idx-1]}")
+            if idx < len(eigeneLösung) -1:
+                myString.append(f"{i}x{superScriptDict[len(eigeneLösung)-idx-1]}")
+            else:
+                myString.append(f"{i}")
     fig = px.line(df, x="x", y="y", title="Graph: " + " + ".join(myString))
     fig.update_xaxes(range=[-1, 6])
     fig.update_yaxes(range=[-5, 5])
