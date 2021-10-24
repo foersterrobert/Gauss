@@ -72,7 +72,7 @@ if eliminate:
     for idx, i in enumerate(eingebauteLösung):
         eingebauteLösungString.append(f"{ascii_l[idx]} = ")
         eingebauteLösungString.append(eingebauteLösung[idx])
-    st.write("in Numpy eingebaute Lösung:", *eingebauteLösungString)
+    st.write("Numpy Lösung:", *eingebauteLösungString)
     superScriptDict = {
         1: '',
         2: '²',
