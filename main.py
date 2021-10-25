@@ -42,10 +42,10 @@ for idx, col in enumerate(cols):
     for row in range(int(n)):
         if idx == n:
             b.append(col.number_input(
-                label=f"y{row+1}", value=values[row][-1]))
+                label=f"y{row+1}", value=float(values[row][-1])))
         else:
             a[row].append(col.number_input(
-                label=f"{ascii_l[idx]}{row+1}", value=values[row][idx]))
+                label=f"{ascii_l[idx]}{row+1}", value=float(values[row][idx])))
 
 eliminate = st.button("Lösen")
 
