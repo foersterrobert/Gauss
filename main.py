@@ -65,7 +65,7 @@ if eliminate:
     eigeneLösungString = []
     for idx, i in enumerate(eigeneLösung):
         eigeneLösungString.append(f"{ascii_l[idx]} = ")
-        eigeneLösungString.append(eigeneLösung[idx], 6)
+        eigeneLösungString.append(eigeneLösung[idx])
     st.write("eigene Lösung:", *eigeneLösungString)
     eingebauteLösung = np.round(np.linalg.solve(a, b), 6)
     eingebauteLösungString = []
