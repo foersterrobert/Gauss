@@ -61,11 +61,11 @@ def PolyGraph(koeffs):
 
 if eliminate:
     a1, b1 = eliminieren(a, b)
-    eigeneLösung = backsubstitution(a1, b1)
+    eigeneLösung = [round(i, 6) for i in backsubstitution(a1, b1)]
     eigeneLösungString = []
     for idx, i in enumerate(eigeneLösung):
         eigeneLösungString.append(f"{ascii_l[idx]} = ")
-        eigeneLösungString.append(round(eigeneLösung[idx], 6))
+        eigeneLösungString.append(eigeneLösung[idx], 6)
     st.write("eigene Lösung:", *eigeneLösungString)
     eingebauteLösung = np.round(np.linalg.solve(a, b), 6)
     eingebauteLösungString = []
@@ -87,11 +87,11 @@ if eliminate:
     ))
     myString = []
     for idx, i in enumerate(eigeneLösung):
-        if i < 0 or i > 0:
+        if i != abs(0):
             if idx < len(eigeneLösung) -1:
-                myString.append(f"{round(i, 6)}x{superScriptDict[len(eigeneLösung)-idx-1]}")
+                myString.append(f"{i}x{superScriptDict[len(eigeneLösung)-idx-1]}")
             else:
-                myString.append(f"{round(i, 6)}")
+                myString.append(f"{i}")
     fig = px.line(df, x="x", y="y", title="Graph: " + " + ".join(myString))
     fig.update_xaxes(range=[-1, 6])
     fig.update_yaxes(range=[-5, 5])
