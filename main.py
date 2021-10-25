@@ -87,7 +87,7 @@ if eliminate:
     ))
     myString = []
     for idx, i in enumerate(eigeneLösung):
-        if i != 0 or i != -0:
+        if i < 0 or i > 0:
             if idx < len(eigeneLösung) -1:
                 myString.append(f"{round(i, 6)}x{superScriptDict[len(eigeneLösung)-idx-1]}")
             else:
