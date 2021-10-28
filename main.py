@@ -94,7 +94,7 @@ if eliminate:
                 myString.append(f"{i}")
     fig = px.line(df, x="x", y="y", title="Graph: " + " + ".join(myString))
     fig.update_xaxes(range=[-1, 6])
-    fig.update_yaxes(range=[-5, 5])
+    fig.update_yaxes(range=[Ys[len(Ys) // 2]-5, Ys[len(Ys) // 2]+5])
     st.plotly_chart(fig, use_container_width=True)
     st.write("Eliminierungs Dreieck")
     _ = [a1[i].append(b1[i]) for i in range(len(b1))]
