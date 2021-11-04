@@ -61,41 +61,43 @@ def PolyGraph(koeffs):
 
 if eliminate:
     a1, b1 = eliminieren(a, b)
-    eigeneLösung = [round(i, 6) for i in backsubstitution(a1, b1)]
-    eigeneLösungString = []
-    for idx, i in enumerate(eigeneLösung):
-        eigeneLösungString.append(f"{ascii_l[idx]} = ")
-        eigeneLösungString.append(eigeneLösung[idx])
-    st.write("eigene Lösung:", *eigeneLösungString)
-    eingebauteLösung = np.round(np.linalg.solve(a, b), 6)
-    eingebauteLösungString = []
-    for idx, i in enumerate(eingebauteLösung):
-        eingebauteLösungString.append(f"{ascii_l[idx]} = ")
-        eingebauteLösungString.append(eingebauteLösung[idx])
-    st.write("Numpy Lösung:", *eingebauteLösungString)
-    superScriptDict = {
-        1: '',
-        2: '²',
-        3: '³',
-        4: '⁴',
-        5: '⁵',
-    }
-    Xs, Ys = PolyGraph(eigeneLösung)
-    df = pd.DataFrame(dict(
-        x = Xs,
-        y = Ys
-    ))
-    myString = []
-    for idx, i in enumerate(eigeneLösung):
-        if i != abs(0):
-            if idx < len(eigeneLösung) -1:
-                myString.append(f"{i}x{superScriptDict[len(eigeneLösung)-idx-1]}")
-            else:
-                myString.append(f"{i}")
-    fig = px.line(df, x="x", y="y", title="Graph: " + " + ".join(myString))
-    fig.update_xaxes(range=[-1, 6])
-    fig.update_yaxes(range=[Ys[len(Ys) // 2]-5, Ys[len(Ys) // 2]+5])
-    st.plotly_chart(fig, use_container_width=True)
+    if a1[-1][-1] == 0:
+        if b[-1] != 0:
+            st.warning("Keine Lösung!")
+        elif b[-1] == 0:
+            st.warning("unendlich viele Lösungen!")
+    else:
+        eigeneLösung = [round(i, 6) for i in backsubstitution(a1, b1)]
+        eigeneLösungString = []
+        for idx, i in enumerate(eigeneLösung):
+            eigeneLösungString.append(f"{ascii_l[idx]} = ")
+            eigeneLösungString.append(eigeneLösung[idx])
+        st.write("eigene Lösung:", *eigeneLösungString)
+        eingebauteLösung = np.round(np.linalg.solve(a, b), 6)
+        eingebauteLösungString = []
+        for idx, i in enumerate(eingebauteLösung):
+            eingebauteLösungString.append(f"{ascii_l[idx]} = ")
+            eingebauteLösungString.append(eingebauteLösung[idx])
+        st.write("Numpy Lösung:", *eingebauteLösungString)
+        superScriptDict = {
+            1: '', 2: '²', 3: '³', 4: '⁴', 5: '⁵',
+        }
+        Xs, Ys = PolyGraph(eigeneLösung)
+        df = pd.DataFrame(dict(
+            x = Xs,
+            y = Ys
+        ))
+        myString = []
+        for idx, i in enumerate(eigeneLösung):
+            if i != abs(0):
+                if idx < len(eigeneLösung) -1:
+                    myString.append(f"{i}x{superScriptDict[len(eigeneLösung)-idx-1]}")
+                else:
+                    myString.append(f"{i}")
+        fig = px.line(df, x="x", y="y", title="Graph: " + " + ".join(myString))
+        fig.update_xaxes(range=[-1, 6])
+        fig.update_yaxes(range=[Ys[len(Ys) // 2]-5, Ys[len(Ys) // 2]+5])
+        st.plotly_chart(fig, use_container_width=True)
     st.write("Eliminierungs Dreieck")
     _ = [a1[i].append(b1[i]) for i in range(len(b1))]
     st.write(np.array(a1))
@@ -132,11 +134,11 @@ def backsubstitution(a, b):
 
 st.markdown(
             """
-            <div>
-                <a style='text-decoration: none; display:flex; align-items: center; justify-content: center; gap: 5px;' href="https://github.com/foersterrobert/Gauss" target='_blank'>
-                    <h4>Der code ist auch auf GitHub</h4>
-                </a>
-            </div>
+<div>
+    <a style='text-decoration: none; display:flex; align-items: center; justify-content: center; gap: 5px;' href="https://github.com/foersterrobert/Gauss" target='_blank'>
+        <h4>Der code ist auch auf GitHub</h4>
+    </a>
+</div>
             """,
             unsafe_allow_html=True,
         )
